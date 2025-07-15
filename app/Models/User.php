@@ -42,4 +42,38 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Выводим только в личном кабинете
+     * @return mixed
+     */
+    public function getEmail() // это аксессор
+    {
+        return $this->email;
+    }
+
+    public function getPublicEmail() // это мутатор
+    {
+        return strlen($this->email);
+    }
+
+    public function userInfo()// Один к одому
+    {
+        return $this->hasOne(UserInfo::class);
+    }
+
+    public function userInfoMany()// Один к многим
+    {
+        return $this->hasMany(UserInfo::class);
+    }
+
+    public function userInfoManyMany()// Многие к многим
+    {
+        return $this->belongsToMany(UserInfo::class);
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,19 @@ Route::get('/', function () {
 //не авторизованая зона
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home312');
+    Route::get('/user', [HomeController::class, 'user'])->name('user');
+    Route::get('/request', [HomeController::class, 'request'])->name('request');
+
+    Route::resource('/news', NewsController::class);
+
+    Route::get('/news_api', [NewsController::class, 'indexApi'])->name('news_api');
+
+    //Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+    //Route::get('/create', [HomeController::class, 'request'])->name('news.create');
+    //Route::post('/store', [HomeController::class, 'request'])->name('request');
+    //Route::get('/request', [HomeController::class, 'request'])->name('request');
+    //Route::get('/request', [HomeController::class, 'request'])->name('request');
+    //Route::get('/request', [HomeController::class, 'request'])->name('request');
 });
 
 //авторизованая зона
