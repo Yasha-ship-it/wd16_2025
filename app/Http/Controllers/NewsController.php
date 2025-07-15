@@ -12,7 +12,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return redirect()->route('admin.news');
+        return redirect()
+            ->route('admin.news');
         //return view('news.index', ['news' => News::paginate(10)]);
     }
 
@@ -81,7 +82,8 @@ class NewsController extends Controller
         return redirect()->route('news.index');
     }
 
-    public function indexApi(){
+    public function indexApi()
+    {
         return response()->json([
             News::paginate(10)
         ]);
