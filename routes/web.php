@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,19 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->middleware('guest')
+    ->name('admin.')
+    ->group(function () {
+
+        Route::get('/user', function () {
+            return view('welcome');
+        });
+        Route::get('/news', [AdminNewsController::class, 'index'])->name('news');
+
+    });
 
 Route::get('/', function () {
     return view('welcome');

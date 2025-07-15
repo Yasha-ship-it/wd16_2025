@@ -12,7 +12,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('news.index', ['news' => News::paginate(10)]);
+        return redirect()->route('admin.news');
+        //return view('news.index', ['news' => News::paginate(10)]);
     }
 
     /**
